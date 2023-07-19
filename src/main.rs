@@ -1,12 +1,11 @@
-mod configuration;
-mod error;
+mod config;
 mod pages;
 
+use crate::config::Configuration;
 use axum::{
     routing::{get, post},
     Router,
 };
-use configuration::Configuration;
 use pages::counter::CounterState;
 use std::sync::Arc;
 
