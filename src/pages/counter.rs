@@ -4,7 +4,10 @@ use axum::{
     extract::State,
     response::{Html, IntoResponse},
 };
-use std::sync::{atomic::AtomicUsize, Arc};
+use std::{
+    sync::{atomic::AtomicUsize, Arc},
+    time::Duration,
+};
 
 pub struct CounterState(AtomicUsize);
 
@@ -32,5 +35,8 @@ pub async fn increment(State(state): State<Arc<CounterState>>) -> impl IntoRespo
     let previous = state
         .0
         .fetch_add(increment, std::sync::atomic::Ordering::Relaxed);
+
+    tokio::time::sleep(Duration::from_secs(1)).await;
+
     Html(format!("{}", previous + increment))
 }

@@ -8,6 +8,7 @@ use axum::{
 };
 use pages::counter::CounterState;
 use std::sync::Arc;
+use tower_http::services::ServeDir;
 
 struct AppState {
     counter: Arc<CounterState>,
@@ -23,6 +24,7 @@ fn router(state: AppState) -> Router {
             "/counter/increment",
             post(pages::counter::increment).with_state(state.counter),
         )
+        .nest_service("/assets", ServeDir::new("assets"))
 }
 
 #[tokio::main]

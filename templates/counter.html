@@ -13,9 +13,12 @@
 
 <body>
   <div>
-    <button hx-post="/counter/increment" hx-trigger="click" hx-target="#count">
+    <button hx-post="/counter/increment" hx-trigger="click" hx-target="#count" hx-indicator="#indicator">
       Click Me!
     </button>
+    <div id="indicator" class="htmx-indicator">
+      <img src="/assets/three-dots-loader.svg">
+    </div>
     <div id="count">{{ count }}</div>
   </div>
 </body>
