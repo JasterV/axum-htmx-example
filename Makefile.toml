@@ -1,0 +1,10 @@
+[env]
+PORT = "3000"
+
+[tasks.run]
+command = "cargo"
+args = ["run"]
+
+[tasks.run-watch]
+command = "cargo"
+args = ["watch", "-x", "run"]
